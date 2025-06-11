@@ -32,6 +32,7 @@ pipeline {
         ARTIFACTS = "build/libs/**"
         DOCKER_REGISTRY = "solarhc"
         DOCKERHUB_CREDENTIAL = 'dockerhub-token'
+        JAVA_OPTS = "-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
     }
 
     options {
@@ -81,7 +82,7 @@ pipeline {
 
         stage('Build & Test Application') {
             steps {
-                sh "gradle clean build --no-daemon --info"
+                sh "./gradlew clean build --no-daemon --info --console=plain"
             }
         }
 
