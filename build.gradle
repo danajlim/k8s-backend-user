@@ -36,11 +36,17 @@ tasks.named('test') {
 }
 
 jar {
-	enabled = false //plain.jar 생성 완전히 비활성화
+	enabled = false // plain.jar 생성 완전히 비활성화
 }
-tasks.register('getAppName'){
+
+tasks.register('getAppName') {
 	doLast {
-		println "${project.version}"
+		println "${rootProject.name}"  // 프로젝트 이름 출력
 	}
 }
 
+tasks.register('getAppVersion') {
+	doLast {
+		println "${project.version}"  // 프로젝트 버전 출력
+	}
+}

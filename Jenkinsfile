@@ -27,10 +27,10 @@ pipeline {
     }
 
     environment {
-        GIT_URL = "https://github.com/danajlim/k8s-backend-user.git"
+        GIT_URL = "https://github.com/solarhc/k8s-backend-user.git"
         GITHUB_CREDENTIAL = "github-token"
         ARTIFACTS = "build/libs/**"
-        DOCKER_REGISTRY = "danajlim"
+        DOCKER_REGISTRY = "solarhc"
         DOCKERHUB_CREDENTIAL = 'dockerhub-token'
     }
 
@@ -86,9 +86,9 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-//             when {
-//                 expression { PROD_BUILD == true || TAG_BUILD == true }
-//             }
+            when {
+                expression { PROD_BUILD == true || TAG_BUILD == true }
+            }
             steps {
                 script {
                     docker.build "${DOCKER_IMAGE_NAME}"
@@ -97,9 +97,9 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-//             when {
-//                 expression { PROD_BUILD == true || TAG_BUILD == true }
-//             }
+            when {
+                expression { PROD_BUILD == true || TAG_BUILD == true }
+            }
             steps {
                 script {
                     docker.withRegistry("", DOCKERHUB_CREDENTIAL) {
