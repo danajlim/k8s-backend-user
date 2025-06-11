@@ -81,7 +81,7 @@ pipeline {
 
         stage('Build & Test Application') {
             steps {
-                sh "gradle clean build"
+                sh "gradle clean build --no-daemon --info"
             }
         }
 
