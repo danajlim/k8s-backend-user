@@ -32,7 +32,6 @@ pipeline {
         ARTIFACTS = "build/libs/**"
         DOCKER_REGISTRY = "danajlim"
         DOCKERHUB_CREDENTIAL = 'dockerhub-token'
-        JAVA_OPTS = "-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
     }
 
     options {
@@ -82,14 +81,14 @@ pipeline {
 
         stage('Build & Test Application') {
             steps {
-                sh "./gradlew clean build --no-daemon --info --console=plain"
+                sh "gradle clean build"
             }
         }
 
         stage('Build Docker Image') {
-            when {
-                expression { PROD_BUILD == true || TAG_BUILD == true }
-            }
+//             when {
+//                 expression { PROD_BUILD == true || TAG_BUILD == true }
+//             }
             steps {
                 script {
                     docker.build "${DOCKER_IMAGE_NAME}"
@@ -98,9 +97,9 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-            when {
-                expression { PROD_BUILD == true || TAG_BUILD == true }
-            }
+//             when {
+//                 expression { PROD_BUILD == true || TAG_BUILD == true }
+//             }
             steps {
                 script {
                     docker.withRegistry("", DOCKERHUB_CREDENTIAL) {
