@@ -6,6 +6,6 @@ spec:
   containers:
   - name: k8s-backend-user
     image: solarhc/k8s-backend-user:0.0.1
-	  imagePullPolicy: Always
+    imagePullPolicy: Always
     ports:
     - containerPort: 8080
