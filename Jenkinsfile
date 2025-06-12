@@ -27,10 +27,10 @@ pipeline {
     }
 
     environment {
-        GIT_URL = "https://github.com/solarhc/k8s-backend-user.git"
+        GIT_URL = "https://github.com/danajlim/k8s-backend-user.git"
         GITHUB_CREDENTIAL = "github-token"
         ARTIFACTS = "build/libs/**"
-        DOCKER_REGISTRY = "solarhc"
+        DOCKER_REGISTRY = "danajlim"
         DOCKERHUB_CREDENTIAL = 'dockerhub-token'
         JAVA_OPTS = "-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
     }
