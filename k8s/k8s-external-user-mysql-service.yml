@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-external-user-mysql-service
+spec:
+  ports:
+    - port: 3306
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: k8s-external-user-mysql-service
+subsets:
+  - addresses:
+      - ip: 192.168.0.8
+    ports:
+      - port: 3307
