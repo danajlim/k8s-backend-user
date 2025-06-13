@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: k8s-backend-user
-        image: danajlim/k8s-backend-user:0.0.4
+        image: danajlim/k8s-backend-user:0.0.5
         imagePullPolicy: Always
         env:
         - name: SPRING_PROFILES_ACTIVE
