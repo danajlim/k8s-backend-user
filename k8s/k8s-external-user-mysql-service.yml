@@ -5,6 +5,7 @@ metadata:
 spec:
   ports:
     - port: 3307
+      targetPort: 3306
 
 ---
 
@@ -14,6 +15,6 @@ metadata:
   name: k8s-external-user-mysql-service
 subsets:
   - addresses:
-      - ip: 192.168.0.8
+      - ip: 172.18.0.2
     ports:
-      - port: 3307
+      - port: 3306
