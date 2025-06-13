@@ -106,7 +106,7 @@ pipeline {
                         docker.image("${DOCKER_IMAGE_NAME}").push()
                     }
 
-                    sh "docker rmi ${DOCKER_IMAGE_NAME}"
+                    sh "docker rmi --force ${DOCKER_IMAGE_NAME}"
                 }
             }
         }

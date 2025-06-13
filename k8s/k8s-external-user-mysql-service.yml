@@ -4,7 +4,7 @@ metadata:
   name: k8s-external-user-mysql-service
 spec:
   ports:
-    - port: 3306
+    - port: 3307
 
 ---
 
