@@ -1,5 +1,6 @@
-package com.welab.k8s_backend_user.domain;
+package com.welab.k8s_backend_user.domain.dto;
 
+import com.welab.k8s_backend_user.domain.SiteUser;
 import com.welab.k8s_backend_user.secret.hash.SecureHashUtils;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

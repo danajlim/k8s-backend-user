@@ -1,7 +1,10 @@
 package com.welab.k8s_backend_user.api.open;
 
 import com.welab.k8s_backend_user.common.dto.ApiResponseDto;
-import com.welab.k8s_backend_user.domain.SiteUserRegisterDto;
+import com.welab.k8s_backend_user.domain.dto.SiteUserLoginDto;
+import com.welab.k8s_backend_user.domain.dto.SiteUserRefreshDto;
+import com.welab.k8s_backend_user.domain.dto.SiteUserRegisterDto;
+import com.welab.k8s_backend_user.secret.jwt.dto.TokenDto;
 import com.welab.k8s_backend_user.service.SiteUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,4 +29,17 @@ public class UserAuthController {
         return ApiResponseDto.defaultOk();
     }
 
+    //로그인: Access + Refresh 토큰 발급
+    @PostMapping(value = "/login")
+    public ApiResponseDto<TokenDto.AccessRefreshToken> login(@RequestBody @Valid SiteUserLoginDto loginDto) {
+        TokenDto.AccessRefreshToken token = siteUserService.login(loginDto);
+        return ApiResponseDto.createOk(token);
+    }
+
+    //Refresh 토큰 -> Access 토큰 재발급
+    @PostMapping(value = "/refresh")
+    public ApiResponseDto<TokenDto.AccessToken> refresh(@RequestBody @Valid SiteUserRefreshDto refreshDto) {
+        TokenDto.AccessToken token = siteUserService.refresh(refreshDto);
+        return ApiResponseDto.createOk(token);
+    }
 }
