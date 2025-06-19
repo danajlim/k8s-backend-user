@@ -8,3 +8,4 @@ spec:
       targetPort: 8080
   selector:
     app: k8s-backend-user
+    ver: v7
