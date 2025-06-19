@@ -1,5 +1,22 @@
+server:
+  port: 8080
+
 spring:
-  config:
-    import:
-      - file:/etc/config/application-dev.yml
-      - file:/etc/secret/application-secret.yml
+  datasource:
+    url: jdbc:mysql://k8s-external-user-mysql-service:3307/user?serverTimezone=UTC&useSSL=true&autoReconnect=true&useUnicode=true&characterEncoding=utf-8
+    username: user
+    password: hello
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1
+      validation-timeout: 5000
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+
+  kafka:
+    bootstrap-servers: k8s-external-kafka-service:9092

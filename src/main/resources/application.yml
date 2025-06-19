@@ -1,6 +1,10 @@
 spring:
   application:
     name: k8s-backend-user
+  config:
+    import:
+      - file:/etc/config/application-dev.yml
+      - file:/etc/secret/application-secret.yml
 
   kafka:
     listener:
